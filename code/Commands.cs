@@ -48,7 +48,13 @@ namespace SCP
 			Log.Info( "RegNumber : " + caller.RegNumber );
 
 		}
+		[ServerCmd( "vomi" )]
+		public static void Vomi()
+		{
 
+			Log.Info( "Beurk" );
+
+		}
 
 
 
