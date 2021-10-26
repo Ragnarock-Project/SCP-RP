@@ -1,3 +1,4 @@
 # SCP-RP
+A SCP-RP gamemode for S&box
 
-Trying to make a SCP-RP on S&box
+Testa
