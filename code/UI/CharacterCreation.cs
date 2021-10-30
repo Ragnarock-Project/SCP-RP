@@ -21,19 +21,19 @@ namespace SCP.UI
 			lastnameText.SetClass( "lastnametext", true );
 			TextEntry regnumberText = Add.TextEntry( "" );
 			regnumberText.SetClass( "number", true );
+
 			StyleSheet.Load( "/ui/CharacterCreation.scss" );
 			SetClass( "charform", true );
 			AddHeader( "Title", null );
 			AddRow( "Firstname", firstnameText );
-			
 			AddRow( "Lastname", lastnameText );
 			AddRow( "Number", regnumberText );
+
 			Panel buttonContainer = Add.Panel( "buttoncontainer" );
 			Panel cancel = buttonContainer.Add.Panel( "cancel" );
 			cancel.Add.Label( "Cancel" );
 			Panel validate = buttonContainer.Add.Panel("validate");
 			validate.Add.Label("Validate");
-
 
 			validate.AddEventListener( "onclick", () =>
 			{
@@ -58,6 +58,7 @@ namespace SCP.UI
 
 		}
 		[ServerCmd]
+		
 		public static void CmdCreateChar( string pageKey, string firstname, string lastname, int regnumber )
 		{
 			var client = ConsoleSystem.Caller;
@@ -92,7 +93,6 @@ namespace SCP.UI
 					break;
 			}
 		}
-
 		
 	}
 }
