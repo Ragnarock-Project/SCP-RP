@@ -1,12 +1,11 @@
 using Sandbox;
 using System;
-using SCP;
-using SCP.Modules.Admin;
+
 
 namespace SCP
 {
 
-	 abstract partial class MainPlayer : Player
+	abstract partial class MainPlayer : Player
 	{
 		[Net]
 		public string RoleplayName { get; set; } = "";
@@ -24,30 +23,35 @@ namespace SCP
 		[Net, Local]
 		public float Stamina { get; set; } = 100f;
 		[Net, Local]
-		public float Food { get; set; }  = 100f;
+		public float Food { get; set; } = 100f;
 		[Net]
 		public string[] Clothes { get; set; }
-		
-		
+
+		private DamageInfo lastDamage;
+
+
 		public string modelPath = "models/citizen/citizen.vmdl";
 		private float fallSpeed;
-		
+
 		private TimeSince timeSinceJumpReleased;
 
 		private bool FirstSpawn = true;
 
-		public MainPlayer() {}
+		public MainPlayer()
+		{
+			Inventory = new Inventory( this );
+		}
 		public MainPlayer( Client cl )
 		{
 			this.RoleplayName = cl.Name;
-			cl.SetValue( "rpname", RoleplayName);
+			cl.SetValue( "rpname", RoleplayName );
 			cl.SetValue( "rank", "Player" );
 
 		}
 
 		public override void Respawn()
 		{
-			SetModel(this.modelPath);
+			SetModel( this.modelPath );
 			Dress( Clothes );
 			if ( !FirstSpawn )
 				FirstSpawn = false;
@@ -62,16 +66,21 @@ namespace SCP
 			EnableShadowInFirstPerson = true;
 
 
+
+
+
 			base.Respawn();
 		}
 
 		public override void OnKilled()
 		{
 			base.OnKilled();
-
+			BecomeRagdollOnClient( Velocity, lastDamage.Flags, lastDamage.Position, lastDamage.Force, GetHitboxBone( lastDamage.HitboxIndex ) );
+			Dress();
 			Controller = null;
 			EnableAllCollisions = false;
 			EnableDrawing = false;
+
 		}
 
 		public override void Simulate( Client cl )
@@ -179,20 +188,23 @@ namespace SCP
 				{
 					Stamina += 0.2f;
 				}
-					
-			}else if (Stamina > 100f )
+
+			}
+			else if ( Stamina > 100f )
 			{
 				Stamina = 100f;
 			}
 		}
 
-		
 
-		public override void TakeDamage(DamageInfo damages)
+
+		public override void TakeDamage( DamageInfo damages )
 		{
 			damages.Damage -= this.Armor;
 			base.TakeDamage( damages );
 		}
+
+
 
 
 

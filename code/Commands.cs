@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SCP
 {
 	public partial class ScpGame
@@ -71,6 +72,7 @@ namespace SCP
 			var damageAmount = DamageInfo.Generic( damage );
 			caller.TakeDamage( damageAmount );
 		}
+
 
 
 	}

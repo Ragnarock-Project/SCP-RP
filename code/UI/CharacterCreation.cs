@@ -51,14 +51,13 @@ namespace SCP.UI
 
 			int regnumber = number.ToInt();
 			CmdCreateChar( chosenDepartment, firstname, lastname, regnumber );
-
-			this.Style.Opacity = 0;// Quand le RPC sera dispo, utiliser this.Parent.Delete(); à la place
-
+			this.Style.Opacity = 0;
 			new ScpHUD();
 
+
 		}
+
 		[ServerCmd]
-		
 		public static void CmdCreateChar( string pageKey, string firstname, string lastname, int regnumber )
 		{
 			var client = ConsoleSystem.Caller;
@@ -92,7 +91,9 @@ namespace SCP.UI
 					defaultclass.Respawn();
 					break;
 			}
+
 		}
-		
+
+
 	}
 }

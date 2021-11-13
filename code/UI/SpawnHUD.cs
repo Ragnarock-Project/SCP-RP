@@ -9,6 +9,7 @@ namespace SCP.UI
 		public SpawnHUD()
 		{
 			AddChild<DepartmentChoice>();
+			
 		}
 	}
 }

@@ -16,7 +16,6 @@
     pointer-events: all;
     background-color: rgba(0, 0, 0, 1);
     border-radius: 20px;
-    justify-content: left;
     flex-wrap: wrap;
 }
 
@@ -37,7 +36,6 @@
     border-radius: 10px;
     flex-direction: column;
     position: relative;
-    clip-path: inset(0px -15px 15px 0px);
     box-shadow: 4px 4px 4px rgba(255, 255, 255, 0.4),
     -4px -4px 4px rgba(255, 255, 255, 0.4),
     -4px 4px 4px rgba(255, 255, 255, 0.4),
