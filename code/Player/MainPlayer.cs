@@ -1,6 +1,6 @@
 using Sandbox;
 using System;
-
+using SCP;
 
 namespace SCP
 {
@@ -35,26 +35,23 @@ namespace SCP
 
 		private TimeSince timeSinceJumpReleased;
 
-		private bool FirstSpawn = true;
 
 		public MainPlayer()
 		{
 			Inventory = new Inventory( this );
 		}
-		public MainPlayer( Client cl )
+		public MainPlayer( Client cl ) : this()
 		{
 			this.RoleplayName = cl.Name;
 			cl.SetValue( "rpname", RoleplayName );
 			cl.SetValue( "rank", "Player" );
-
 		}
+
 
 		public override void Respawn()
 		{
 			SetModel( this.modelPath );
 			Dress( Clothes );
-			if ( !FirstSpawn )
-				FirstSpawn = false;
 
 			Controller = new SCPWalkController();
 			Animator = new StandardPlayerAnimator();
@@ -66,8 +63,7 @@ namespace SCP
 			EnableShadowInFirstPerson = true;
 
 
-
-
+			
 
 			base.Respawn();
 		}
@@ -81,31 +77,32 @@ namespace SCP
 			EnableAllCollisions = false;
 			EnableDrawing = false;
 
+
 		}
 
-		public override void Simulate( Client cl )
+		public override void Simulate(Client cl)
 		{
-			base.Simulate( cl );
+			base.Simulate(cl);
 			TickPlayerUse();
 
 
 
-			if ( LifeState != LifeState.Alive )
+			if (LifeState != LifeState.Alive)
 				return;
 
 
 			var controller = GetActiveController();
 
-			if ( controller != null )
-				EnableSolidCollisions = !controller.HasTag( "noclip" );
+			if (controller != null)
+				EnableSolidCollisions = !controller.HasTag("noclip");
 
-			if ( IsServer && !controller.HasTag( "noclip" ) )
+			if (!controller.HasTag("noclip"))
 			{
-				if ( Input.Down( InputButton.Run ) )
+				if (Input.Down(InputButton.Run))
 				{
-					if ( Stamina > 0 )
+					if (Stamina > 0)
 					{
-						if ( Math.Abs( base.Velocity.y ) > 200 || Math.Abs( base.Velocity.x ) > 200 )
+						if (Math.Abs(base.Velocity.y) > 200 || Math.Abs(base.Velocity.x) > 200)
 						{
 							Stamina -= 0.3f;
 						}
@@ -122,11 +119,11 @@ namespace SCP
 					RegenStamina();
 				}
 			}
+			
 
-
-			if ( Input.Pressed( InputButton.View ) )
+			if (Input.Pressed(InputButton.View))
 			{
-				if ( Camera is ThirdPersonCamera )
+				if (Camera is ThirdPersonCamera)
 				{
 					Camera = new FirstPersonCamera();
 				}
@@ -137,18 +134,18 @@ namespace SCP
 				}
 			}
 
-
-			if ( Input.Released( InputButton.Jump ) )
+			
+			if (Input.Released(InputButton.Jump))
 			{
-				if ( timeSinceJumpReleased < 0.3f )
+				if (timeSinceJumpReleased < 0.3f)
 				{
-					Game.Current?.DoPlayerNoclip( cl );
+					Game.Current?.DoPlayerNoclip(cl);
 				}
 
 				timeSinceJumpReleased = 0;
 			}
 
-			if ( Input.Left != 0 || Input.Forward != 0 )
+			if (Input.Left != 0 || Input.Forward != 0)
 			{
 				timeSinceJumpReleased = 1;
 			}
@@ -161,13 +158,13 @@ namespace SCP
 		private void FallDamages()
 		{
 
-			if ( GroundEntity != null )
+			if (GroundEntity != null)
 			{
-				if ( fallSpeed < -500 )
+				if (fallSpeed < -500)
 				{
 					float fallDamageAmount = (fallSpeed + 500) / 3;
-					var fallDamageInfo = DamageInfo.Generic( (fallDamageAmount * fallDamageAmount / 50) / 4 );
-					base.TakeDamage( fallDamageInfo );
+					var fallDamageInfo = DamageInfo.Generic((fallDamageAmount * fallDamageAmount / 50) / 4);
+					base.TakeDamage(fallDamageInfo);
 					fallSpeed = 1;
 				}
 
@@ -178,9 +175,9 @@ namespace SCP
 
 		private void RegenStamina()
 		{
-			if ( Stamina < 100f )
+			if (Stamina < 100f)
 			{
-				if ( Math.Abs( base.Velocity.y ) < 50 && Math.Abs( base.Velocity.x ) < 50 )
+				if (Math.Abs(base.Velocity.y) < 50 && Math.Abs(base.Velocity.x) < 50)
 				{
 					Stamina += 0.3f;
 				}
@@ -190,7 +187,7 @@ namespace SCP
 				}
 
 			}
-			else if ( Stamina > 100f )
+			else if (Stamina > 100f)
 			{
 				Stamina = 100f;
 			}
@@ -198,13 +195,36 @@ namespace SCP
 
 
 
+
 		public override void TakeDamage( DamageInfo damages )
 		{
 			damages.Damage -= this.Armor;
-			base.TakeDamage( damages );
+			base.TakeDamage(damages);
 		}
 
+		[ServerCmd("inventory_current")]
+		public static void SetInventoryCurrent(string entName)
+		{
+			var target = ConsoleSystem.Caller.Pawn;
+			if (target == null) return;
 
+			var inventory = target.Inventory;
+			if (inventory == null)
+				return;
+
+			for (int i = 0; i < inventory.Count(); ++i)
+			{
+				var slot = inventory.GetSlot(i);
+				if (!slot.IsValid())
+					continue;
+
+				if (!slot.ClassInfo.IsNamed(entName))
+					continue;
+
+				inventory.SetActiveSlot(i, false);
+				break;
+			}
+		}
 
 
 

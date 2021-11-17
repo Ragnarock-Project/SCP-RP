@@ -9,8 +9,6 @@ namespace SCP.UI
 		private readonly Label Health;
 		private readonly Panel HealthBar;
 
-		private readonly Label Armor;
-		private readonly Panel ArmorBar;
 
 		private readonly Label Stam;
 		private readonly Panel StamBar;
@@ -33,13 +31,8 @@ namespace SCP.UI
 
 			Health = healthBarBack.Add.Label( "0", "healthText" );
 
-			// Armor
-			Panel armorBarBack = vitalsBack.Add.Panel( "armorBarBack" );
-			ArmorBar = armorBarBack.Add.Panel( "armorBar" );
 
-			armorBarBack.Add.Label( "shield", "armorIcon" );
 
-			Armor = armorBarBack.Add.Label( "0", "armorText" );
 			// Stamina
 			Panel stamBarBack = vitalsBack.Add.Panel( "stamBarBack" );
 			StamBar = stamBarBack.Add.Panel( "stamBar" );
@@ -71,10 +64,7 @@ namespace SCP.UI
 			HealthBar.Style.Dirty();
 			HealthBar.Style.Width = Length.Percent( player.Health );
 
-			Armor.Text = $"{player.Armor.CeilToInt()}";
 
-			ArmorBar.Style.Dirty();
-			ArmorBar.Style.Width = Length.Percent( player.Armor );
 
 			Stam.Text = $"{player.Stamina.CeilToInt()}";
 

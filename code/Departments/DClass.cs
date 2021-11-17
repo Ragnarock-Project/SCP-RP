@@ -18,7 +18,6 @@ namespace SCP.Departments
 			RoleName = "D Class";
 			RoleplayName = "D-" + RegNumber;
 			cl.SetValue( "rpname", RoleplayName );
-
 			cl.SetValue( "role", RoleName );
 
 		}
