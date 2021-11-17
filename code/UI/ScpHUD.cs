@@ -17,6 +17,7 @@ namespace SCP.UI
 			AddChild<KillFeed>();
 			AddChild<InventoryBar>();
 			AddChild<Scoreboard<ScoreboardEntry>>();
+			AddChild<PlayerData>();
 		}
 	}
 }

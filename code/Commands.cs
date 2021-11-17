@@ -28,34 +28,15 @@ namespace SCP
 			caller.Health = health;
 		}
 
-		[ServerCmd( "setarmor" )]
-		public static void SetArmor( float armor )
-		{
 
-			var caller = ConsoleSystem.Caller.Pawn as MainPlayer;
-			if ( caller == null ) return;
-			caller.Armor = armor;
 
-		}
-		[ServerCmd( "getdata" )]
-		public static void GetData()
-		{
-
-			var caller = ConsoleSystem.Caller.Pawn as MainPlayer;
-			if ( caller == null ) return;
-			Log.Info( "FirstName : " + caller.FirstName );
-			Log.Info( "LastName : " + caller.LastName );
-			Log.Info( "RegNumber : " + caller.RegNumber );
-
-		}
-		[ServerCmd( "vomi" )]
+		[ServerCmd( "ping" )]
 		public static void Vomi()
 		{
 
-			Log.Info( "Beurk" );
+			Log.Info( "Pong" );
 
 		}
-
 
 
 		/*[ServerCmd( "setrpname" )]
@@ -70,7 +51,7 @@ namespace SCP
 		}*/
 
 
-		[ServerCmd( "damageoui" )]
+		[ServerCmd( "damage_self" )]
 		public static void DamageTarget( int damage )
 		{
 			var caller = ConsoleSystem.Caller.Pawn;

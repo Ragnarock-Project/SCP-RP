@@ -5,7 +5,7 @@ namespace SCP.Entities
 {
 
 
-	[Library( "ent_healthusable" )]
+	[Library( "ent_health_usable" )]
 	public partial class HealthUsable : Prop, IUse
 	{
 		public override void Spawn()

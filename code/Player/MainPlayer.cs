@@ -1,5 +1,6 @@
 using Sandbox;
 using System;
+using System.Text.Json;
 using SCP;
 using SCP.Modules.Admin;
 
@@ -19,8 +20,6 @@ namespace SCP
 		[Net]
 		public string RoleName { get; set; } = "";
 
-		[Net, Local]
-		public float Armor { get; set; } = 0f;
 		[Net, Local]
 		public float Stamina { get; set; } = 100f;
 		[Net, Local]
@@ -194,7 +193,6 @@ namespace SCP
 
 		public override void TakeDamage(DamageInfo damages)
 		{
-			damages.Damage -= this.Armor;
 			base.TakeDamage( damages );
 		}
 

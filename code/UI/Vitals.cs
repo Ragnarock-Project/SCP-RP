@@ -10,12 +10,9 @@ namespace SCP.UI
 		private readonly Panel HealthBar;
 
 
-
 		private readonly Label Stam;
 		private readonly Panel StamBar;
 
-		private readonly Label Job;
-		private readonly Label RpName;
 
 		public Vitals()
 		{
@@ -43,10 +40,6 @@ namespace SCP.UI
 
 			Stam = stamBarBack.Add.Label( "0", "stamText" );
 
-			Job = vitalsBack.Add.Label( "0", "jobText" );
-			RpName = vitalsBack.Add.Label( "0", "rpNameText" );
-
-
 		}
 
 		public override void Tick()
@@ -56,8 +49,6 @@ namespace SCP.UI
 			var player = Local.Pawn as MainPlayer;
 			if ( player == null ) return;
 
-			Job.Text = player.RoleName;
-			RpName.Text = player.RoleplayName;
 
 			Health.Text = $"{player.Health.CeilToInt()}";
 

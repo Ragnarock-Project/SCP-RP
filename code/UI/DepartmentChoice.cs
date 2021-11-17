@@ -72,11 +72,6 @@ namespace SCP.UI
 
 
 		}
-		
-			
-
-
-
 	}
 }
 
