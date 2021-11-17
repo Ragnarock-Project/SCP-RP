@@ -3,17 +3,18 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using SCP.UI;
+using SCP.Departments;
 
 namespace SCP
 {
 	public partial class ScpGame : Game
 	{
-		public SpawnHUD SpawnHUD;
+		public ScpHUD SpawnHUD;
 
 
 		public ScpGame()
 		{
-			if ( IsClient ) SpawnHUD = new SpawnHUD();
+			if ( IsClient ) SpawnHUD = new ScpHUD();
 
 		}
 
@@ -22,7 +23,7 @@ namespace SCP
 		{
 			if ( !IsClient ) return;
 			SpawnHUD?.Delete();
-			SpawnHUD = new SpawnHUD();
+			SpawnHUD = new ScpHUD();
 		}
 
 		public override void ClientJoined( Client client )
@@ -30,7 +31,7 @@ namespace SCP
 			base.ClientJoined( client );
 
 
-			NotSpawnedPlayer player = new( client );
+			DClass player = new( client, "Jacques", "Mallard", 12345 );
 			client.Pawn = player;
 
 			player.Respawn();

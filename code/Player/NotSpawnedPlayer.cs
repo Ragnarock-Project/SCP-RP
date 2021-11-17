@@ -10,7 +10,8 @@ namespace SCP
 		public string RoleName { get; set; } = "Default";
 
 
-		public NotSpawnedPlayer() { }
+		public NotSpawnedPlayer() {
+		}
 		public NotSpawnedPlayer( Client cl )
 		{
 			this.RoleplayName = cl.Name;

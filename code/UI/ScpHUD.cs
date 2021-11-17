@@ -15,7 +15,7 @@ namespace SCP.UI
 			AddChild<ChatBox>();
 			AddChild<VoiceList>();
 			AddChild<KillFeed>();
-
+			AddChild<InventoryBar>();
 			AddChild<Scoreboard<ScoreboardEntry>>();
 		}
 	}

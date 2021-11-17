@@ -36,8 +36,10 @@ namespace SCP
 
 		private bool FirstSpawn = true;
 
-		public MainPlayer() {}
-		public MainPlayer( Client cl )
+		public MainPlayer() {
+			Inventory = new Inventory(this);
+		}
+		public MainPlayer( Client cl ) : this()
 		{
 			this.RoleplayName = cl.Name;
 			cl.SetValue( "rpname", RoleplayName);
@@ -72,6 +74,8 @@ namespace SCP
 			Controller = null;
 			EnableAllCollisions = false;
 			EnableDrawing = false;
+
+
 		}
 
 		public override void Simulate( Client cl )
@@ -194,7 +198,30 @@ namespace SCP
 			base.TakeDamage( damages );
 		}
 
+		[ServerCmd("inventory_current")]
+		public static void SetInventoryCurrent(string entName)
+		{
+			var target = ConsoleSystem.Caller.Pawn;
+			if (target == null) return;
 
+			var inventory = target.Inventory;
+			if (inventory == null)
+				return;
+
+			for (int i = 0; i < inventory.Count(); ++i)
+			{
+				var slot = inventory.GetSlot(i);
+				if (!slot.IsValid())
+					continue;
+
+				if (!slot.ClassInfo.IsNamed(entName))
+					continue;
+
+				inventory.SetActiveSlot(i, false);
+
+				break;
+			}
+		}
 
 	}
 
