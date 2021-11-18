@@ -1,9 +1,9 @@
 {
-  "joinMessage": "has joined",
-  "dClass": "D Class",
-  "medic": "Medic",
-  "scientist": "Scientist",
-  "mtf": "MTF"
+  "JoinMessage": "has joined",
+  "DClass": "D Class",
+  "Medic": "Medic",
+  "Scientist": "Scientist",
+  "Mtf": "MTF"
 }
 
   

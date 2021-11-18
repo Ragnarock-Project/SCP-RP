@@ -39,4 +39,8 @@
 <ProjectReference Include="..\..\..\addons\base\code\base.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Settings\DefaultValues\Progress\" />
+  </ItemGroup>
+
 </Project>

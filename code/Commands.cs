@@ -51,8 +51,6 @@ namespace SCP
 			
 
 		}
-
-
 		/*[ServerCmd( "setrpname" )]
 		public static void SetRpName( string newName )
 		{
@@ -68,8 +66,8 @@ namespace SCP
 		{
 
 			long callerId = ConsoleSystem.Caller.PlayerId;
-			string currentLanguage = ClientSettings.Load( callerId ).language;
-			string test = Language.Load( currentLanguage ).joinMessage;
+			string currentLanguage = ClientSettings.Load( callerId ).Language;
+			string test = Language.Load( currentLanguage ).JoinMessage;
 			Log.Info( "Your language : " + currentLanguage + "\n'has joined' in your language is : " + test );
 
 

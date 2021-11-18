@@ -1,7 +1,7 @@
 {
-  "joinMessage": "a rejoint",
-  "dClass": "Classe D",
-  "medic": "Medecin",
-  "scientist": "Scientifique",
-  "mtf": "FIM"
+  "JoinMessage": "a rejoint",
+  "DClass": "Classe D",
+  "Medic": "Medecin",
+  "Scientist": "Scientifique",
+  "Mtf": "FIM"
 }

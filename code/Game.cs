@@ -31,7 +31,6 @@ namespace SCP
 			NotSpawnedPlayer player = new();//new( client, "Jacques", "Mallard", 12345 );
 			client.Pawn = player;
 			player.Respawn();
-			Log.Info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH" + ClientSettings.Load( client.PlayerId ).language);
 
 		}
 

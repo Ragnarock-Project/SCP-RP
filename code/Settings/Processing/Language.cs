@@ -7,18 +7,18 @@ namespace SCP.Settings
 {
 	public class Language
 	{
-		public string joinMessage { get; set; }
-		public string dClass { get; set; }
-		public string medic { get; set; }
-		public string scientist { get; set; }
-		public string mtf { get; set; }
+		public string JoinMessage { get; set; }
+		public string DClass { get; set; }
+		public string Medic { get; set; }
+		public string Scientist { get; set; }
+		public string Mtf { get; set; }
 
 		public static Language Load(string languageName)
 		{
 			string languagePath = "/Settings/Languages/" + languageName + ".json";
 			if ( !FileSystem.Mounted.FileExists( languagePath ) )
 			{
-				languagePath = "/code/settings/Languages/english.json";
+				languagePath = "/settings/Languages/english.json";
 				Log.Info( "Couldn't find your language : " + languageName + "\n Loading default language (English)" );
 				
 			}
