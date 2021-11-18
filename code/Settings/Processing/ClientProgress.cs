@@ -61,7 +61,7 @@ namespace SCP.Settings
 
 		private static ClientProgress LoadDefault()
 		{
-			Log.Error( "Couldn't find your progress file \n Loading default progress file" );
+			Log.Error( "Couldn't find your progress file \n Creating a new progress file" );
 			return FileSystem.Mounted.ReadJson<ClientProgress>( "/code/settings/defaultvalues/client_progress.json" );
 		}
 

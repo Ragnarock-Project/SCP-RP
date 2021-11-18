@@ -1,14 +1,16 @@
-﻿using Sandbox;
-using Sandbox.UI;
-using SCP;
+﻿using Sandbox.UI;
 
 namespace SCP.UI
 {
-	public partial class SpawnHUD : RootPanel
+	public partial class SpawnHUD : Sandbox.HudEntity<RootPanel>
 	{
 		public SpawnHUD()
 		{
-			AddChild<DepartmentChoice>();
+			if ( IsClient )
+			{
+				RootPanel.AddChild<DepartmentChoice>();
+				
+			}
 		}
 	}
 }
