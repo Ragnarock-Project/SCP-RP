@@ -6,9 +6,9 @@ namespace SCP.Settings
 {
 	public class ClientProgress
 	{
-		public string ScientistUnlocked { get; set; }
-		public string SoldierUnlocked { get; set; }
-		public string MedicalUnlocked { get; set; }
+		public bool ScientistUnlocked { get; set; }
+		public bool SoldierUnlocked { get; set; }
+		public bool MedicalUnlocked { get; set; }
 
 
 		public static ClientProgress Load( long steamId )

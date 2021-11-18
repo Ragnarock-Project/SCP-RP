@@ -3,14 +3,15 @@ using Sandbox.UI;
 using Sandbox.UI.Construct;
 using System;
 using System.Collections.Generic;
+using SCP.Settings;
 using SCP.Departments;
 
 namespace SCP.UI
 {
 	public partial class DepartmentChoice : Panel
 	{
-		private List<(Panel, Panel)> Entries = new();
-		private Panel MainPanel;
+		private readonly List<(Panel, Panel)> Entries = new();
+		private readonly Panel MainPanel;
 		public DepartmentChoice()
 		{
 			StyleSheet.Load( "/ui/DepartmentChoice.scss" );
@@ -26,27 +27,30 @@ namespace SCP.UI
 			Panel DClassPage = MainPanel.Add.Panel( "page" );
 			string DClassID = "dclass";
 			string DClassDesc = "You are a D Class, which means you are a test subject";
-			AddEntry( DClassPage, DClassDesc, DClassID, "/UI/Images/dclass.jpg", "D Class", new Color( 255f, 0f, 0f ) ); ;
+			AddEntry( DClassPage, DClassDesc, DClassID, "/UI/Images/dclass.jpg", "D Class", new Color( 255f, 0f, 0f ), true ); ;
 
 			Panel ScientistPage = MainPanel.Add.Panel( "page" );
 			string ScientistID = "scientist";
 			string ScientistDesc = "You are a Scientist, which means you lead experiences";
-			AddEntry( ScientistPage, ScientistDesc, ScientistID, "/UI/Images/scientist.jpg",  "Scientist", new Color( 0f, 255f, 255f ) );
+			bool ScientistEnabled = ClientProgress.Load( Local.Client.PlayerId ).ScientistUnlocked;
+			AddEntry( ScientistPage, ScientistDesc, ScientistID, "/UI/Images/scientist.jpg", "Scientist", new Color( 0f, 255f, 255f ), ScientistEnabled );
 
 			Panel AITPage = MainPanel.Add.Panel( "page" );
 			string AITID = "ait";
 			string AITDesc = "You are an AIT, which means you assure the site's security";
-			AddEntry( AITPage, AITDesc, AITID, "/UI/Images/soldier.jpg", "AIT", new Color( 15f, 133f, 0f ) );
+			bool AITEnabled = ClientProgress.Load( Local.Client.PlayerId ).SoldierUnlocked;
+			AddEntry( AITPage, AITDesc, AITID, "/UI/Images/soldier.jpg", "AIT", new Color( 15f, 133f, 0f ), AITEnabled );
 
 			Panel MedicPage = MainPanel.Add.Panel( "page" );
 			string MedicID = "medical";
 			string MedicDesc = "You are a medic, which means you heal people";
-			AddEntry( MedicPage, MedicDesc, MedicID, "/UI/Images/medic.jpg", "Medical", new Color( 15f, 133f, 0f ) );
+			bool MedicEnabled = ClientProgress.Load( Local.Client.PlayerId ).MedicalUnlocked;
+			AddEntry( MedicPage, MedicDesc, MedicID, "/UI/Images/medic.jpg", "Medical", new Color( 15f, 133f, 0f ), MedicEnabled );
 
 
 		}
 
-		private void AddEntry( Panel panel, string desc, string id, string image, string name, Color buttonColor )
+		private void AddEntry( Panel panel, string desc, string id, string image, string name, Color buttonColor, bool enabled )
 		{
 			string pageKey = id;
 			Panel button = MainPanel.Add.Panel( "selectbutton" );
@@ -56,14 +60,21 @@ namespace SCP.UI
 			body.Style.SetBackgroundImage( image );
 			body.Add.Label( desc, "description" );
 			button.Style.BorderColor = buttonColor;
-			
-			button.AddEventListener( "onclick", () => {
+			if ( !enabled )
+			{
+				Panel locked = button.Add.Panel( "locked" );
+			}
+
+
+
+			button.AddEventListener( "onclick", () =>
+			{
 				SelectEntry( pageKey );
 			} );
 
 			Entries.Add( (panel, button) );
 		}
-		
+
 		private void SelectEntry( string pageKey )
 		{
 			CharacterCreation FinishCreation = new( pageKey );
