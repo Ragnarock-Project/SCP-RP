@@ -3,7 +3,7 @@ using Sandbox;
 using SCP;
 using System.Text.Json;
 
-namespace SCP.Settings.Languages
+namespace SCP.Settings
 {
 	public class Language
 	{
@@ -23,6 +23,20 @@ namespace SCP.Settings.Languages
 				
 			}
 			return FileSystem.Mounted.ReadJson<Language>( languagePath );
+		}
+
+		public static bool Check( string languageName )
+		{
+
+			string languagePath = "/Settings/Languages/" + languageName + ".json";
+			if ( FileSystem.Mounted.FileExists( languagePath ) )
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 
 	}

@@ -2,7 +2,7 @@ using Sandbox;
 using System;
 using SCP.UI;
 using SCP.Departments;
-using SCP.Settings.Languages;
+using SCP.Settings;
 
 namespace SCP
 {
@@ -31,6 +31,7 @@ namespace SCP
 			NotSpawnedPlayer player = new();//new( client, "Jacques", "Mallard", 12345 );
 			client.Pawn = player;
 			player.Respawn();
+			Log.Info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH" + ClientSettings.Load( client.PlayerId ).language);
 
 		}
 

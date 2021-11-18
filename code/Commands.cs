@@ -2,8 +2,7 @@
 using Sandbox;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SCP.Settings;
 
 namespace SCP
 {
@@ -38,6 +37,21 @@ namespace SCP
 
 		}
 
+		[ServerCmd( "set_language" )]
+		public static void SetLanguage(string language)
+		{
+			if ( !Language.Check( language ) )
+			{
+				Log.Info( "Couldn't find your language : " + language + " Operation canceled" );
+				return;
+			}
+			long callerId = ConsoleSystem.Caller.PlayerId;
+			ClientSettings.Save(callerId, language);
+			Log.Info( "Language saved sucessfully" );
+			
+
+		}
+
 
 		/*[ServerCmd( "setrpname" )]
 		public static void SetRpName( string newName )
@@ -49,7 +63,17 @@ namespace SCP
 			ConsoleSystem.Caller.SetScore( "rpname", newName );
 
 		}*/
+		[ServerCmd( "check_language" )]
+		public static void CheckLanguage()
+		{
 
+			long callerId = ConsoleSystem.Caller.PlayerId;
+			string currentLanguage = ClientSettings.Load( callerId ).language;
+			string test = Language.Load( currentLanguage ).joinMessage;
+			Log.Info( "Your language : " + currentLanguage + "\n'has joined' in your language is : " + test );
+
+
+		}
 
 		[ServerCmd( "damage_self" )]
 		public static void DamageTarget( int damage )
