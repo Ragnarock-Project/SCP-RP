@@ -1,0 +1,79 @@
+﻿$cancelbtn : red;
+$validatebtn : green;
+
+
+.charform {
+    height: 40%;
+    width: 20%;
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    pointer-events: all;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    font-size: 25px;
+}
+
+
+.firstnametext, .lastnametext, .number {
+    border: 1px solid rgba(255,255,255,0.3);
+    width: 100px;
+    height: 30px;
+    margin: 10px;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.firstnametext:focus, .lastnametext:focus, .number:focus {
+    border: 0;
+    border-bottom: 3px solid $validatebtn;
+}
+
+
+
+.buttoncontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.validate , .cancel {
+    font-size: 15px;
+    margin: 20px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    text-transform: uppercase;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    transition: all .2s ease-in-out;
+}
+
+.validate:hover, .cancel:hover {
+    transform: scale(1.1);
+}
+
+.validate {
+    background-color: $validatebtn;
+}
+
+.cancel {
+    background-color: $cancelbtn;
+}
+
+.validate:hover {
+    box-shadow: 0 0 5px $validatebtn, 0 0 15px $validatebtn, 0 0 25px $validatebtn, 0 0 40px $validatebtn;
+}
+
+.cancel:hover {
+    box-shadow: 0 0 5px $cancelbtn, 0 0 15px $cancelbtn, 0 0 25px $cancelbtn, 0 0 40px $cancelbtn;
+}

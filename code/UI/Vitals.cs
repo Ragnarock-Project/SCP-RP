@@ -9,14 +9,11 @@ namespace SCP.UI
 		private readonly Label Health;
 		private readonly Panel HealthBar;
 
-
 		private readonly Label Stam;
 		private readonly Panel StamBar;
 
-
 		public Vitals()
 		{
-
 
 			StyleSheet.Load( "/ui/Vitals.scss" );
 			Panel vitalsBack = Add.Panel( "vitalsBack" );

@@ -13,7 +13,10 @@ namespace SCP
 
 		public ScpGame()
 		{
-			if ( IsClient ) SpawnHUD = new SpawnHUD();
+			if ( IsClient )
+			{
+				SpawnHUD = new SpawnHUD();
+			}
 
 		}
 
@@ -25,5 +28,5 @@ namespace SCP
 			player.Respawn();
 		}
 
-}
+	}
 }

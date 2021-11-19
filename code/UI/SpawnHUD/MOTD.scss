@@ -1,0 +1,55 @@
+﻿$validatebtn: blue;
+
+
+.motd {
+    height: 40%;
+    width: 40%;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    pointer-events: all;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    font-size: 25px;
+    cursor: pointer;
+
+}
+
+
+
+.buttoncontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.okay {
+    font-size: 15px;
+    margin: 20px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    text-transform: uppercase;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    transition: all .2s ease-in-out;
+}
+
+.okay:hover {
+    transform: scale(1.1);
+}
+
+.okay {
+    background-color: $validatebtn;
+}
+
+
