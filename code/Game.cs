@@ -23,9 +23,50 @@ namespace SCP
 		public override void ClientJoined( Client client )
 		{
 			base.ClientJoined( client );
-			NotSpawnedPlayer player = new();//new( client, "Jacques", "Mallard", 12345 );
+			NotSpawnedPlayer player = new();
 			client.Pawn = player;
 			player.Respawn();
+		}
+
+
+		[ServerCmd]
+		public static void SpawnPlayer( string chosenDepartment )
+		{
+			Client client = ConsoleSystem.Caller;
+			ClientCharacter clientCharacter = ClientCharacter.Load( client.PlayerId, chosenDepartment );
+			string FirstName = clientCharacter.FirstName;
+			string LastName = clientCharacter.LastName;
+			int Number = clientCharacter.Number;
+			client.Pawn.Delete();
+
+			switch ( chosenDepartment )
+			{
+				case "dclass":
+					DClass dclass = new( client, FirstName, LastName, Number );
+					client.Pawn = dclass;
+					dclass.Respawn();
+					break;
+				case "scientist":
+					Scientist scientist = new( client, FirstName, LastName, Number );
+					client.Pawn = scientist;
+					scientist.Respawn();
+					break;
+				case "ait":
+					AIT ait = new( client, FirstName, LastName, Number );
+					client.Pawn = ait;
+					ait.Respawn();
+					break;
+				case "medical":
+					Medical medic = new( client, FirstName, LastName, Number );
+					client.Pawn = medic;
+					medic.Respawn();
+					break;
+				default:
+					DClass defaultclass = new( client, FirstName, LastName, Number );
+					client.Pawn = defaultclass;
+					defaultclass.Respawn();
+					break;
+			}
 		}
 
 	}

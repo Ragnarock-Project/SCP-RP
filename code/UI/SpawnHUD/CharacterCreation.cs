@@ -2,19 +2,20 @@
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 using SCP.Departments;
-using SCP;
+using SCP.Settings;
 
 namespace SCP.UI
 {
 	public partial class CharacterCreation : Form
 	{
+		long steamId;
 		public CharacterCreation()
 		{
 
 		}
 		public CharacterCreation( string chosenDepartment )
 		{
-
+			steamId = Local.Client.PlayerId;
 			TextEntry firstnameText = Add.TextEntry( "" );
 			firstnameText.SetClass( "firstnametext", true );
 			TextEntry lastnameText = Add.TextEntry( "" );
@@ -34,7 +35,6 @@ namespace SCP.UI
 			Panel validate = buttonContainer.Add.Panel("validate");
 			validate.Add.Label("Validate");
 
-
 			validate.AddEventListener( "onclick", () =>
 			{
 				CharacterCreate( chosenDepartment, firstnameText.Text, lastnameText.Text, regnumberText.Text );
@@ -50,48 +50,16 @@ namespace SCP.UI
 		{
 
 			int regnumber = number.ToInt();
-			CmdCreateChar( chosenDepartment, firstname, lastname, regnumber );
-
-			this.Style.Opacity = 0;// Quand le RPC sera dispo, utiliser this.Parent.Delete(); à la place
-
+			ClientCharacter createdCharacter = new( chosenDepartment, firstname, lastname, regnumber );
+			ClientCharacter.Save( steamId, createdCharacter );
+			ScpGame.SpawnPlayer(chosenDepartment);
+			
 			new MainHUD();
 
-		}
-		[ServerCmd]
-		public static void CmdCreateChar( string pageKey, string firstname, string lastname, int regnumber )
-		{
-			var client = ConsoleSystem.Caller;
-			client.Pawn.Delete();
+			this.Parent.Delete();
 
-			switch ( pageKey )
-			{
-				case "dclass":
-					DClass dclass = new( client, firstname, lastname, regnumber );
-					client.Pawn = dclass;
-					dclass.Respawn();
-					break;
-				case "scientist":
-					Scientist scientist = new( client, firstname, lastname, regnumber );
-					client.Pawn = scientist;
-					scientist.Respawn();
-					break;
-				case "ait":
-					AIT ait = new( client, firstname, lastname, regnumber );
-					client.Pawn = ait;
-					ait.Respawn();
-					break;
-				case "medical":
-					Medical medic = new( client, firstname, lastname, regnumber );
-					client.Pawn = medic;
-					medic.Respawn();
-					break;
-				default:
-					DClass defaultclass = new( client, firstname, lastname, regnumber );
-					client.Pawn = defaultclass;
-					defaultclass.Respawn();
-					break;
-			}
 		}
+		
 
 		
 	}
