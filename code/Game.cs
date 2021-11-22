@@ -1,5 +1,4 @@
 using Sandbox;
-using System;
 using SCP.UI;
 using SCP.Departments;
 using SCP.Settings;
@@ -9,8 +8,6 @@ namespace SCP
 	public partial class ScpGame : Game
 	{
 		public SpawnHUD SpawnHUD;
-
-
 		public ScpGame()
 		{
 			if ( IsClient )
@@ -28,7 +25,10 @@ namespace SCP
 			player.Respawn();
 		}
 
-
+		/// <summary>
+		/// Load the user's data following a choice of faction using it's steamID and faction's ID, then spawn the player
+		/// </summary>
+		/// <param name="chosenDepartment"> The chosen department</param>
 		[ServerCmd]
 		public static void SpawnPlayer( string chosenDepartment )
 		{

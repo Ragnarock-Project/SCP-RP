@@ -9,15 +9,6 @@ namespace SCP
 	public partial class ScpGame
 	{
 
-		[ServerCmd( "killeveryone" )]
-		public static void KillEveryone()
-		{
-			foreach ( Player player in All.OfType<Player>() )
-			{
-				player.TakeDamage( DamageInfo.Generic( 100f ) );
-			}
-		}
-
 		[ServerCmd( "sethealth" )]
 		public static void SetHealth( int health )
 		{

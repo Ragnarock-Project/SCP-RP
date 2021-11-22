@@ -1,6 +1,4 @@
-using Sandbox;
 using Sandbox.UI;
-using SCP;
 
 namespace SCP.UI
 {
@@ -9,7 +7,6 @@ namespace SCP.UI
 		public MainHUD()
 		{
 			AddChild<Vitals>();
-
 			AddChild<NameTags>();
 			AddChild<CrosshairCanvas>();
 			AddChild<ChatBox>();
