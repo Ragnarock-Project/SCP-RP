@@ -34,9 +34,7 @@ namespace SCP.UI
 			Panel stamBarBack = vitalsBack.Add.Panel( "stamBarBack" );
 			StamBar = stamBarBack.Add.Panel( "stamBar" );
 
-
 			stamBarBack.Add.Label( "directions_run", "stamIcon" );
-
 
 			Stam = stamBarBack.Add.Label( "0", "stamText" );
 
@@ -51,16 +49,10 @@ namespace SCP.UI
 			var player = Local.Pawn as MainPlayer;
 			if ( player == null ) return;
 
-
 			Health.Text = $"{player.Health.CeilToInt()}";
-
-			HealthBar.Style.Dirty();
 			HealthBar.Style.Width = Length.Percent( player.Health );
 
-
 			Stam.Text = $"{player.Stamina.CeilToInt()}";
-
-			StamBar.Style.Dirty();
 			StamBar.Style.Width = Length.Percent( player.Stamina );
 
 		}

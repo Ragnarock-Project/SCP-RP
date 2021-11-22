@@ -1,10 +1,8 @@
 ﻿using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
-using System;
 using System.Collections.Generic;
 using SCP.Settings;
-using SCP.Departments;
 
 namespace SCP.UI
 {
@@ -15,9 +13,9 @@ namespace SCP.UI
 	{
 
 
-		private List<(Panel, Panel)> Entries = new();
-		private Panel MainPanel;
-		long SteamId;
+		private readonly List<(Panel, Panel)> Entries = new();
+		private readonly Panel MainPanel;
+		private readonly long SteamId;
 
 		public DepartmentChoice()
 		{

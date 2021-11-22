@@ -5,9 +5,7 @@ namespace SCP.Departments
 	class Medical : MainPlayer
 	{
 
-
 		public Medical() { }
-
 
 		public Medical( Client cl, string firstname, string lastname, int regnumber ) : base( cl )
 		{
@@ -25,7 +23,6 @@ namespace SCP.Departments
 			RoleplayName = "Doctor " + LastName;
 			cl.SetValue( "rpname", RoleplayName );
 			cl.SetValue( "role", RoleName );
-
 		}
 	}
 }

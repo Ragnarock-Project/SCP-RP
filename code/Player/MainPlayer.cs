@@ -6,7 +6,7 @@ namespace SCP
 	/// <summary>
 	/// The parent class of all human departments
 	/// </summary>
-	 abstract partial class MainPlayer : Player
+	abstract partial class MainPlayer : Player
 	{
 		[Net]
 		public string RoleplayName { get; set; } = "";
@@ -22,31 +22,30 @@ namespace SCP
 		[Net, Local]
 		public float Stamina { get; set; } = 100f;
 		[Net, Local]
-		public float Food { get; set; }  = 100f;
+		public float Food { get; set; } = 100f;
 		[Net]
 		public string[] Clothes { get; set; }
-		
-		
+
 		public string modelPath = "models/citizen/citizen.vmdl";
 		private float fallSpeed;
-		
+
 		private TimeSince timeSinceJumpReleased;
 
 		private bool FirstSpawn = true;
 
-		public MainPlayer() {
+		public MainPlayer()
+		{
 		}
 		public MainPlayer( Client cl ) : this()
 		{
 			this.RoleplayName = cl.Name;
-			cl.SetValue( "rpname", RoleplayName);
+			cl.SetValue( "rpname", RoleplayName );
 			cl.SetValue( "rank", "Player" );
-
 		}
 
 		public override void Respawn()
 		{
-			SetModel(this.modelPath);
+			SetModel( this.modelPath );
 			Dress( Clothes );
 			if ( !FirstSpawn )
 				FirstSpawn = false;
@@ -100,14 +99,14 @@ namespace SCP
 						}
 						else
 						{
-							RegenStamina();
+							RegenStamina( 0.2f );
 						}
 					}
 
 				}
 				else
 				{
-					RegenStamina();
+					RegenStamina( 0.2f );
 				}
 			}
 
@@ -169,20 +168,22 @@ namespace SCP
 		/// <summary>
 		/// Restore the player's stamina when called
 		/// </summary>
-		private void RegenStamina()
+		/// <param name="regenRate">Stamina regeneration rate applied, multiplied by 1.5 if the player does not move</param>
+		private void RegenStamina( float regenRate )
 		{
 			if ( Stamina < 100f )
 			{
 				if ( Math.Abs( base.Velocity.y ) < 50 && Math.Abs( base.Velocity.x ) < 50 )
 				{
-					Stamina += 0.3f;
+					Stamina += (regenRate * 1.5f);
 				}
 				else
 				{
-					Stamina += 0.2f;
+					Stamina += regenRate;
 				}
-					
-			}else if (Stamina > 100f )
+
+			}
+			else if ( Stamina > 100f )
 			{
 				Stamina = 100f;
 			}

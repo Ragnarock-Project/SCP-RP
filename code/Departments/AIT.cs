@@ -4,12 +4,9 @@ namespace SCP.Departments
 {
 	class AIT : MainPlayer
 	{
-
-
 		public AIT()
 		{
 		}
-
 
 		public AIT( Client cl, string firstname, string lastname, int regnumber ) : base( cl )
 		{
@@ -27,7 +24,6 @@ namespace SCP.Departments
 			};
 			RoleName = "AIT";
 			cl.SetValue( "role", RoleName );
-
 
 		}
 	}

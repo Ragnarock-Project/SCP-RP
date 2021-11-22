@@ -1,10 +1,5 @@
-﻿using Sandbox;
-using Sandbox.UI;
+﻿using Sandbox.UI;
 using Sandbox.UI.Construct;
-using System;
-using System.Collections.Generic;
-using SCP.Settings;
-using SCP.Departments;
 
 namespace SCP.UI
 {
@@ -28,7 +23,6 @@ namespace SCP.UI
 			Panel buttonContainer = Add.Panel( "buttoncontainer" );
 			Panel okay = buttonContainer.Add.Panel( "okay" );
 			okay.Add.Label( "Okay" );
-
 
 			okay.AddEventListener( "onclick", () =>
 			{

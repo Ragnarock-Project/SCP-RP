@@ -1,6 +1,4 @@
-﻿using System;
-using Sandbox;
-using SCP;
+﻿using Sandbox;
 
 namespace SCP.Settings
 {

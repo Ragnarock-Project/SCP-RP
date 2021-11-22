@@ -1,7 +1,6 @@
 ﻿using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
-using SCP.Departments;
 using SCP.Settings;
 
 namespace SCP.UI
@@ -11,7 +10,7 @@ namespace SCP.UI
 	/// </summary>
 	public partial class CharacterCreation : Form
 	{
-		readonly long steamId;
+		private readonly long steamId;
 		public CharacterCreation()
 		{
 

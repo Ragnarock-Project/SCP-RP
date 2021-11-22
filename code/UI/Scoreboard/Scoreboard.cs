@@ -1,5 +1,4 @@
-﻿
-using Sandbox;
+﻿using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 using System.Collections.Generic;
@@ -19,14 +18,10 @@ namespace SCP.UI
 
 		public Scoreboard()
 		{
-
 			StyleSheet.Load("/UI/Scoreboard/Style/Scoreboard.scss");
 			AddClass("scoreboard");
-
 			AddHeader();
-
 			Canvas = Add.Panel("canvas");
-
 		}
 		public override void Tick()
 		{

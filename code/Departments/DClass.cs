@@ -5,10 +5,8 @@ namespace SCP.Departments
 	class DClass : MainPlayer
 	{
 		
-
 		public DClass() {
 		}
-
 
 		public DClass( Client cl, string firstname, string lastname, int regnumber ) : base( cl ) 
 		{
@@ -21,7 +19,6 @@ namespace SCP.Departments
 			RoleName = "D Class";
 
 			cl.SetValue( "role", RoleName );
-
 		}
 	}
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using Sandbox;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Sandbox;
 using SCP.Settings;
 
 namespace SCP
@@ -21,9 +18,7 @@ namespace SCP
 		[ServerCmd( "ping" )]
 		public static void Ping()
 		{
-
 			Log.Info( "Pong" );
-
 		}
 
 		[ServerCmd( "set_language" )]
@@ -40,16 +35,7 @@ namespace SCP
 			
 
 		}
-		/*[ServerCmd( "setrpname" )]
-		public static void SetRpName( string newName )
-		{
 
-			var caller = ConsoleSystem.Caller.Pawn as ScpPlayer;
-			if ( caller == null ) return;
-			caller.RpName = newName;
-			ConsoleSystem.Caller.SetScore( "rpname", newName );
-
-		}*/
 		[ServerCmd( "check_language" )]
 		public static void CheckLanguage()
 		{

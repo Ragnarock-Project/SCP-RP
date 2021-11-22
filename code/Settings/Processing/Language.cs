@@ -1,7 +1,4 @@
-﻿using System;
-using Sandbox;
-using SCP;
-using System.Text.Json;
+﻿using Sandbox;
 
 namespace SCP.Settings
 {

@@ -4,10 +4,7 @@ namespace SCP.Departments
 {
 	class Scientist : MainPlayer
 	{
-
-
 		public Scientist() { }
-
 
 		public Scientist( Client cl, string firstname, string lastname, int regnumber ) : base( cl )
 		{
@@ -27,7 +24,6 @@ namespace SCP.Departments
 			cl.SetValue( "rpname", RoleplayName );
 
 			cl.SetValue( "role", RoleName );
-
 		}
 	}
 }
