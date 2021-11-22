@@ -20,7 +20,7 @@ namespace SCP.UI
 			string HeaderText = "Message of the day";
 			string BodyText = "Welcome to our game mode, it's not finished yet but we hope you like it.\nJoin us on discord https://discord.gg/RTq9tCYg9b";
 			BackgroundPanel.Add.Label( HeaderText, "header" );
-			BackgroundPanel.Add.Label( BodyText, "body" );
+			BackgroundPanel.Add.Label( BodyText, "bodyText" );
 			SetClass( "motd", true );
 
 			Panel buttonContainer = Add.Panel( "buttoncontainer" );

@@ -36,7 +36,6 @@ namespace SCP
 		private bool FirstSpawn = true;
 
 		public MainPlayer() {
-			Inventory = new Inventory(this);
 		}
 		public MainPlayer( Client cl ) : this()
 		{
@@ -63,6 +62,7 @@ namespace SCP
 			EnableShadowInFirstPerson = true;
 
 
+
 			base.Respawn();
 		}
 
@@ -73,7 +73,8 @@ namespace SCP
 			Controller = null;
 			EnableAllCollisions = false;
 			EnableDrawing = false;
-
+			Inventory.DropActive();
+			Inventory.DeleteContents();
 
 		}
 

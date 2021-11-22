@@ -1,47 +1,48 @@
 ﻿$validatebtn: blue;
 
-
 .motd {
-    height: 40%;
-    width: 40%;
-    position: absolute;
-    top: 30%;
-    left: 30%;
-    background-color: rgba(0,0,0,0.6);
-    color: white;
-    pointer-events: all;
+    margin: auto auto;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    flex-wrap: wrap;
+    height: 50%;
+    width: 50%;
+    pointer-events: all;
+    background-color: rgba(0,0,0,0.8);
+    color: white;
     border-radius: 10px;
-    font-size: 25px;
-    cursor: pointer;
-
 }
 
-
-
-.buttoncontainer {
+.background{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 50px;
 }
+
+.header{
+    font-size: 60px;
+    font-weight: 700;
+    padding: 20px;
+}
+
+.bodyText {
+    font-size: 30px;
+    font-style: italic;
+}
+
 
 .okay {
-    font-size: 15px;
-    margin: 20px;
-    padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: nowrap;
-    text-transform: uppercase;
-    width: 100px;
-    height: 40px;
-    border-radius: 10px;
-    transition: all .2s ease-in-out;
+    width: 120px;
+    height: 60px;
+    border-radius: 50%;
+    transition: scale .7s ease-in-out;
 }
 
 .okay:hover {
