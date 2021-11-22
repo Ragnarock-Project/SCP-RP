@@ -6,7 +6,8 @@ namespace SCP.Departments
 	{
 		
 
-		public DClass() {}
+		public DClass() {
+		}
 
 
 		public DClass( Client cl, string firstname, string lastname, int regnumber ) : base( cl ) 
@@ -15,9 +16,9 @@ namespace SCP.Departments
 			LastName = lastname;
 			RegNumber = regnumber;
 			Clothes = System.Array.Empty<string>();
-			RoleName = "D Class";
 			RoleplayName = "D-" + RegNumber;
 			cl.SetValue( "rpname", RoleplayName );
+			RoleName = "D Class";
 
 			cl.SetValue( "role", RoleName );
 

@@ -1,9 +1,7 @@
 ﻿
 using Sandbox;
-using Sandbox.Hooks;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,13 +23,11 @@ namespace SCP.UI
 			StyleSheet.Load("/UI/Scoreboard/Style/Scoreboard.scss");
 			AddClass("scoreboard");
 
-
 			AddHeader();
 
 			Canvas = Add.Panel("canvas");
 
 		}
-
 		public override void Tick()
 		{
 			base.Tick();
@@ -62,8 +58,6 @@ namespace SCP.UI
 			}
 
 		}
-
-
 		protected virtual void AddHeader()
 		{
 			Header = Add.Panel("header");
@@ -71,7 +65,6 @@ namespace SCP.UI
 			Header.Add.Label("Role", "role");
 			Header.Add.Label("Rank", "rank");
 			Header.Add.Label("Ping", "ping");
-
 		}
 
 		protected virtual T AddClient(Client entry)

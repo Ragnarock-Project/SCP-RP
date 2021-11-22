@@ -4,6 +4,9 @@ using Sandbox.UI.Construct;
 
 namespace SCP.UI
 {
+	/// <summary>
+	/// Represents player's stamina and health
+	/// </summary>
 	public partial class Vitals : Panel
 	{
 		private readonly Label Health;
@@ -38,7 +41,9 @@ namespace SCP.UI
 			Stam = stamBarBack.Add.Label( "0", "stamText" );
 
 		}
-
+		/// <summary>
+		/// Called every tick, by default 60 times per second
+		/// </summary>
 		public override void Tick()
 		{
 			base.Tick();

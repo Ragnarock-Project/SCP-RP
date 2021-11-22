@@ -6,9 +6,12 @@ using SCP.Settings;
 
 namespace SCP.UI
 {
+	/// <summary>
+	/// The character creation form, used when the player wants to create a new character
+	/// </summary>
 	public partial class CharacterCreation : Form
 	{
-		long steamId;
+		readonly long steamId;
 		public CharacterCreation()
 		{
 
@@ -42,25 +45,25 @@ namespace SCP.UI
 
 			cancel.AddEventListener( "onclick", () =>
 			{
+				ReturnToChoice();
 			} );
-
-
 		}
 		public void CharacterCreate( string chosenDepartment, string firstname, string lastname, string number )
 		{
-
 			int regnumber = number.ToInt();
 			ClientCharacter createdCharacter = new( chosenDepartment, firstname, lastname, regnumber );
 			ClientCharacter.Save( steamId, createdCharacter );
-			ScpGame.SpawnPlayer(chosenDepartment);
+			ScpRpGame.SpawnPlayer(chosenDepartment);
 			
 			new MainHUD();
 
 			this.Parent.Delete();
 
 		}
-		
-
-		
+		public void ReturnToChoice()
+		{
+			Parent.AddChild<DepartmentChoice>();
+			this.Delete();
+		}
 	}
 }

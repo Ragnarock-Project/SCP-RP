@@ -18,7 +18,6 @@ namespace SCP.UI
 		public Label Ping;
 		public Label CategoryBorder;
 
-
 		public ScoreboardEntry()
 		{
 			AddClass( "entry" );
@@ -59,9 +58,6 @@ namespace SCP.UI
 			Icon.SetTexture( $"avatar:{SteamId}" );
 			Ping.Text = Client.Ping.ToString();
 			SetClass( "me", Client == Local.Client );
-			
-			
-
 		}
 
 		public virtual void UpdateFrom( Client client )

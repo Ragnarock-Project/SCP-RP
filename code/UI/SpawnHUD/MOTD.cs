@@ -8,9 +8,11 @@ using SCP.Departments;
 
 namespace SCP.UI
 {
+	/// <summary>
+	/// The message of the day, it's the first UI the player sees when he connects
+	/// </summary>
 	public partial class MOTD : Panel
 	{
-
 
 		public MOTD()
 		{

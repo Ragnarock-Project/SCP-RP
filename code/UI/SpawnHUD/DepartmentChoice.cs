@@ -8,6 +8,9 @@ using SCP.Departments;
 
 namespace SCP.UI
 {
+	/// <summary>
+	/// The interface allowing the player to choose his department
+	/// </summary>
 	public partial class DepartmentChoice : Panel
 	{
 
@@ -51,8 +54,6 @@ namespace SCP.UI
 			AddEntry( MedicPage, MedicDesc, MedicID, "/UI/Images/medic.jpg", "Medical", new Color( 15f, 133f, 0f ), MedicEnabled );
 		}
 
-
-
 		private void AddEntry( Panel panel, string desc, string departmentId, string image, string name, Color buttonColor, bool unlocked )
 		{
 
@@ -70,7 +71,6 @@ namespace SCP.UI
 					SelectEntry( departmentId );
 				} );
 			}
-			
 
 			Entries.Add( (panel, button) );
 		}
@@ -79,7 +79,7 @@ namespace SCP.UI
 		{
 			if(ClientCharacter.Check(SteamId, departmentId ) )
 			{
-				ScpGame.SpawnPlayer( departmentId );
+				ScpRpGame.SpawnPlayer( departmentId );
 				new MainHUD();
 
 				this.Parent.Delete();
@@ -91,11 +91,7 @@ namespace SCP.UI
 				Parent.AddChild( FinishCreation );
 				this.Delete();
 			}
-
-			
-
 		}
-
 	}
 }
 

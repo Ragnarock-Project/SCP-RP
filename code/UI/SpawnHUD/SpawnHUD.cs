@@ -2,6 +2,9 @@
 
 namespace SCP.UI
 {
+	/// <summary>
+	/// The HUD used before the player spawned
+	/// </summary>
 	public partial class SpawnHUD : Sandbox.HudEntity<RootPanel>
 	{
 		public SpawnHUD()
@@ -9,17 +12,6 @@ namespace SCP.UI
 			if ( !IsClient )
 				return;
 			RootPanel.AddChild<MOTD>();
-		}
-		public void ChangeMenu(bool firstCall )
-		{
-			if( firstCall )
-			{
-				RootPanel.AddChild<DepartmentChoice>();
-			}
-			else
-			{
-				RootPanel.AddChild<CharacterCreation>();
-			}
 		}
 	}
 }

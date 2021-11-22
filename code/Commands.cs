@@ -6,7 +6,7 @@ using SCP.Settings;
 
 namespace SCP
 {
-	public partial class ScpGame
+	public partial class ScpRpGame
 	{
 
 		[ServerCmd( "sethealth" )]
@@ -18,10 +18,8 @@ namespace SCP
 			caller.Health = health;
 		}
 
-
-
 		[ServerCmd( "ping" )]
-		public static void Vomi()
+		public static void Ping()
 		{
 
 			Log.Info( "Pong" );
@@ -72,6 +70,12 @@ namespace SCP
 			caller.TakeDamage( damageAmount );
 		}
 
+		[ServerCmd( "test" )]
+		public static void Test()
+		{
+			var caller = ConsoleSystem.Caller.Pawn as MainPlayer;
+			Log.Info(caller.RoleName);
+		}
 
 	}
 }

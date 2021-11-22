@@ -4,6 +4,9 @@ using Sandbox.UI.Construct;
 
 namespace SCP.UI
 {
+	/// <summary>
+	/// The box where player's data are displayed
+	/// </summary>
 	public partial class PlayerData : Panel
 	{
 
@@ -19,7 +22,9 @@ namespace SCP.UI
 			RpName = vitalsBack.Add.Label( "0", "rpNameText" );
 
 		}
-
+		/// <summary>
+		/// Called every tick, by default 60 times per second
+		/// </summary>
 		public override void Tick()
 		{
 			base.Tick();

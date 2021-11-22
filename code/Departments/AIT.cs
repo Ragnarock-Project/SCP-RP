@@ -6,7 +6,9 @@ namespace SCP.Departments
 	{
 
 
-		public AIT() { }
+		public AIT()
+		{
+		}
 
 
 		public AIT( Client cl, string firstname, string lastname, int regnumber ) : base( cl )
@@ -15,7 +17,6 @@ namespace SCP.Departments
 			LastName = lastname;
 			RegNumber = regnumber;
 			RoleplayName = "S17 AIT " + LastName + " " + RegNumber;
-
 			cl.SetValue( "rpname", RoleplayName );
 			Clothes = new string[]
 			{
@@ -26,8 +27,8 @@ namespace SCP.Departments
 			};
 			RoleName = "AIT";
 			cl.SetValue( "role", RoleName );
-			
-			
+
+
 		}
 	}
 }

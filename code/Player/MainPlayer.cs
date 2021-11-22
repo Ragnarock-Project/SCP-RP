@@ -1,12 +1,11 @@
 using Sandbox;
 using System;
-using System.Text.Json;
-using SCP;
-using SCP.Modules.Admin;
 
 namespace SCP
 {
-
+	/// <summary>
+	/// The parent class of all human departments
+	/// </summary>
 	 abstract partial class MainPlayer : Player
 	{
 		[Net]
@@ -52,7 +51,7 @@ namespace SCP
 			if ( !FirstSpawn )
 				FirstSpawn = false;
 
-			Controller = new SCPWalkController();
+			Controller = new MainWalkController();
 			Animator = new StandardPlayerAnimator();
 			Camera = new FirstPersonCamera();
 
@@ -60,8 +59,6 @@ namespace SCP
 			EnableDrawing = true;
 			EnableHideInFirstPerson = true;
 			EnableShadowInFirstPerson = true;
-
-
 
 			base.Respawn();
 		}
@@ -83,11 +80,8 @@ namespace SCP
 			base.Simulate( cl );
 			TickPlayerUse();
 
-
-
 			if ( LifeState != LifeState.Alive )
 				return;
-
 
 			var controller = GetActiveController();
 
@@ -108,7 +102,6 @@ namespace SCP
 						{
 							RegenStamina();
 						}
-
 					}
 
 				}
@@ -152,7 +145,9 @@ namespace SCP
 
 
 		}
-
+		/// <summary>
+		/// Manages the damages dealt by a fall
+		/// </summary>
 		private void FallDamages()
 		{
 
@@ -171,6 +166,9 @@ namespace SCP
 			fallSpeed = base.Velocity.z;
 		}
 
+		/// <summary>
+		/// Restore the player's stamina when called
+		/// </summary>
 		private void RegenStamina()
 		{
 			if ( Stamina < 100f )
@@ -189,39 +187,6 @@ namespace SCP
 				Stamina = 100f;
 			}
 		}
-
-		
-
-		public override void TakeDamage(DamageInfo damages)
-		{
-			base.TakeDamage( damages );
-		}
-
-		[ServerCmd("inventory_current")]
-		public static void SetInventoryCurrent(string entName)
-		{
-			var target = ConsoleSystem.Caller.Pawn;
-			if (target == null) return;
-
-			var inventory = target.Inventory;
-			if (inventory == null)
-				return;
-
-			for (int i = 0; i < inventory.Count(); ++i)
-			{
-				var slot = inventory.GetSlot(i);
-				if (!slot.IsValid())
-					continue;
-
-				if (!slot.ClassInfo.IsNamed(entName))
-					continue;
-
-				inventory.SetActiveSlot(i, false);
-
-				break;
-			}
-		}
-
 	}
 
 }

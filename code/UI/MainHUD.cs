@@ -2,6 +2,9 @@ using Sandbox.UI;
 
 namespace SCP.UI
 {
+	/// <summary>
+	/// The HUD used in game
+	/// </summary>
 	public partial class MainHUD : RootPanel
 	{
 		public MainHUD()
