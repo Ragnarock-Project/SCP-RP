@@ -8,6 +8,8 @@ namespace SCP
 	/// </summary>
 	abstract partial class MainPlayer : Player
 	{
+
+
 		[Net]
 		public string RoleplayName { get; set; } = "";
 		[Net]
@@ -69,8 +71,6 @@ namespace SCP
 			Controller = null;
 			EnableAllCollisions = false;
 			EnableDrawing = false;
-			Inventory.DropActive();
-			Inventory.DeleteContents();
 
 		}
 

@@ -11,7 +11,6 @@ namespace SCP
 	{
 
 		Stack<ModelEntity> Mdl = new();
-
 		bool dressed = false;
 
 		public void Dress( string[] clothes )

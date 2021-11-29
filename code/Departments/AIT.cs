@@ -4,6 +4,7 @@ namespace SCP.Departments
 {
 	class AIT : MainPlayer
 	{
+		public static Color RoleColor { get; } = new Color( 15f, 133f, 0f );
 		public AIT()
 		{
 		}
@@ -24,7 +25,6 @@ namespace SCP.Departments
 			};
 			RoleName = "AIT";
 			cl.SetValue( "role", RoleName );
-
 		}
 	}
 }

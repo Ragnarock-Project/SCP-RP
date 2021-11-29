@@ -4,7 +4,7 @@ namespace SCP.Departments
 {
 	class Medical : MainPlayer
 	{
-
+		public static Color RoleColor { get; } = new Color( 15f, 133f, 0f );
 		public Medical() { }
 
 		public Medical( Client cl, string firstname, string lastname, int regnumber ) : base( cl )
@@ -23,6 +23,7 @@ namespace SCP.Departments
 			RoleplayName = "Doctor " + LastName;
 			cl.SetValue( "rpname", RoleplayName );
 			cl.SetValue( "role", RoleName );
+
 		}
 	}
 }

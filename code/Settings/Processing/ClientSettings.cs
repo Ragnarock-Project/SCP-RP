@@ -6,7 +6,6 @@ namespace SCP.Settings
 	{
 		public string Language { get; set; }
 
-
 		public static ClientSettings Load( long steamId )
 		{
 			string settingsPathFile = "/clientdata/" + steamId + "/settings.json";
