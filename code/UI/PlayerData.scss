@@ -1,0 +1,27 @@
+*{
+    width: 100vw;
+    height: 100vh;
+}
+
+.playerDataBack{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: -100vw;
+    margin: 10px;
+    width: 200px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0, 0.7);
+}
+
+.rpNameText {
+    font-family: roboto;
+    color: white;
+    text-shadow: 0 0 1px black;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+

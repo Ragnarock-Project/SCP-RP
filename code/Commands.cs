@@ -1,23 +1,10 @@
-﻿using System;
-using Sandbox;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Sandbox;
+using SCP.Settings;
 
 namespace SCP
 {
-	public partial class ScpGame
+	public partial class ScpRpGame
 	{
-
-		[ServerCmd( "killeveryone" )]
-		public static void KillEveryone()
-		{
-			foreach ( Player player in All.OfType<Player>() )
-			{
-				player.TakeDamage( DamageInfo.Generic( 100f ) );
-			}
-		}
 
 		[ServerCmd( "sethealth" )]
 		public static void SetHealth( int health )
@@ -28,49 +15,40 @@ namespace SCP
 			caller.Health = health;
 		}
 
-		[ServerCmd( "setarmor" )]
-		public static void SetArmor( float armor )
+		[ServerCmd( "ping" )]
+		public static void Ping()
 		{
-
-			var caller = ConsoleSystem.Caller.Pawn as MainPlayer;
-			if ( caller == null ) return;
-			caller.Armor = armor;
-
+			Log.Info( "Pong" );
 		}
-		[ServerCmd( "getdata" )]
-		public static void GetData()
+
+		[ServerCmd( "set_language" )]
+		public static void SetLanguage(string language)
 		{
-
-			var caller = ConsoleSystem.Caller.Pawn as MainPlayer;
-			if ( caller == null ) return;
-			Log.Info( "FirstName : " + caller.FirstName );
-			Log.Info( "LastName : " + caller.LastName );
-			Log.Info( "RegNumber : " + caller.RegNumber );
-
-		}
-		[ServerCmd( "vomi" )]
-		public static void Vomi()
-		{
-
-			Log.Info( "Beurk" );
+			if ( !Language.Check( language ) )
+			{
+				Log.Info( "Couldn't find your language : " + language + " Operation canceled" );
+				return;
+			}
+			long callerId = ConsoleSystem.Caller.PlayerId;
+			ClientSettings.Save(callerId, language);
+			Log.Info( "Language saved sucessfully" );
+			
 
 		}
 
-
-
-		/*[ServerCmd( "setrpname" )]
-		public static void SetRpName( string newName )
+		[ServerCmd( "check_language" )]
+		public static void CheckLanguage()
 		{
 
-			var caller = ConsoleSystem.Caller.Pawn as ScpPlayer;
-			if ( caller == null ) return;
-			caller.RpName = newName;
-			ConsoleSystem.Caller.SetScore( "rpname", newName );
-
-		}*/
+			long callerId = ConsoleSystem.Caller.PlayerId;
+			string currentLanguage = ClientSettings.Load( callerId ).Language;
+			string test = Language.Load( currentLanguage ).JoinMessage;
+			Log.Info( "Your language : " + currentLanguage + "\n'has joined' in your language is : " + test );
 
 
-		[ServerCmd( "damageoui" )]
+		}
+
+		[ServerCmd( "damage_self" )]
 		public static void DamageTarget( int damage )
 		{
 			var caller = ConsoleSystem.Caller.Pawn;
@@ -78,6 +56,12 @@ namespace SCP
 			caller.TakeDamage( damageAmount );
 		}
 
+		[ServerCmd( "test" )]
+		public static void Test()
+		{
+			var caller = ConsoleSystem.Caller.Pawn as MainPlayer;
+			Log.Info(caller.RoleName);
+		}
 
 	}
 }

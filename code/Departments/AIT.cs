@@ -4,10 +4,10 @@ namespace SCP.Departments
 {
 	class AIT : MainPlayer
 	{
-
-
-		public AIT() { }
-
+		public static Color RoleColor { get; } = new Color( 15f, 133f, 0f );
+		public AIT()
+		{
+		}
 
 		public AIT( Client cl, string firstname, string lastname, int regnumber ) : base( cl )
 		{
@@ -15,7 +15,6 @@ namespace SCP.Departments
 			LastName = lastname;
 			RegNumber = regnumber;
 			RoleplayName = "S17 AIT " + LastName + " " + RegNumber;
-
 			cl.SetValue( "rpname", RoleplayName );
 			Clothes = new string[]
 			{
@@ -26,8 +25,6 @@ namespace SCP.Departments
 			};
 			RoleName = "AIT";
 			cl.SetValue( "role", RoleName );
-			
-			
 		}
 	}
 }

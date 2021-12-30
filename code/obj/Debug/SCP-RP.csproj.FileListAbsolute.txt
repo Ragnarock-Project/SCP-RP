@@ -1,0 +1,5 @@
+C:\Program Files (x86)\Steam\steamapps\common\sbox\addons\SCP-RP\code\obj\Debug\SCP-RP.csproj.AssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\sbox\addons\SCP-RP\code\obj\Debug\SCP-RP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Program Files (x86)\Steam\steamapps\common\sbox\addons\SCP-RP\code\obj\Debug\SCP-RP.AssemblyInfoInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\sbox\addons\SCP-RP\code\obj\Debug\SCP-RP.AssemblyInfo.cs
+C:\Program Files (x86)\Steam\steamapps\common\sbox\addons\SCP-RP\code\obj\Debug\SCP-RP.csproj.CoreCompileInputs.cache

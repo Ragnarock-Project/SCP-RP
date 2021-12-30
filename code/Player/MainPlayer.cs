@@ -1,13 +1,15 @@
 using Sandbox;
 using System;
-using SCP;
-using SCP.Modules.Admin;
 
 namespace SCP
 {
-
-	 abstract partial class MainPlayer : Player
+	/// <summary>
+	/// The parent class of all human departments
+	/// </summary>
+	abstract partial class MainPlayer : Player
 	{
+
+
 		[Net]
 		public string RoleplayName { get; set; } = "";
 		[Net]
@@ -20,39 +22,37 @@ namespace SCP
 		public string RoleName { get; set; } = "";
 
 		[Net, Local]
-		public float Armor { get; set; } = 0f;
-		[Net, Local]
 		public float Stamina { get; set; } = 100f;
 		[Net, Local]
-		public float Food { get; set; }  = 100f;
+		public float Food { get; set; } = 100f;
 		[Net]
 		public string[] Clothes { get; set; }
-		
-		
+
 		public string modelPath = "models/citizen/citizen.vmdl";
 		private float fallSpeed;
-		
+
 		private TimeSince timeSinceJumpReleased;
 
 		private bool FirstSpawn = true;
 
-		public MainPlayer() {}
-		public MainPlayer( Client cl )
+		public MainPlayer()
+		{
+		}
+		public MainPlayer( Client cl ) : this()
 		{
 			this.RoleplayName = cl.Name;
-			cl.SetValue( "rpname", RoleplayName);
+			cl.SetValue( "rpname", RoleplayName );
 			cl.SetValue( "rank", "Player" );
-
 		}
 
 		public override void Respawn()
 		{
-			SetModel(this.modelPath);
+			SetModel( this.modelPath );
 			Dress( Clothes );
 			if ( !FirstSpawn )
 				FirstSpawn = false;
 
-			Controller = new SCPWalkController();
+			Controller = new MainWalkController();
 			Animator = new StandardPlayerAnimator();
 			Camera = new FirstPersonCamera();
 
@@ -60,7 +60,6 @@ namespace SCP
 			EnableDrawing = true;
 			EnableHideInFirstPerson = true;
 			EnableShadowInFirstPerson = true;
-
 
 			base.Respawn();
 		}
@@ -72,6 +71,7 @@ namespace SCP
 			Controller = null;
 			EnableAllCollisions = false;
 			EnableDrawing = false;
+
 		}
 
 		public override void Simulate( Client cl )
@@ -79,11 +79,8 @@ namespace SCP
 			base.Simulate( cl );
 			TickPlayerUse();
 
-
-
 			if ( LifeState != LifeState.Alive )
 				return;
-
 
 			var controller = GetActiveController();
 
@@ -102,15 +99,14 @@ namespace SCP
 						}
 						else
 						{
-							RegenStamina();
+							RegenStamina( 0.2f );
 						}
-
 					}
 
 				}
 				else
 				{
-					RegenStamina();
+					RegenStamina( 0.2f );
 				}
 			}
 
@@ -148,7 +144,9 @@ namespace SCP
 
 
 		}
-
+		/// <summary>
+		/// Manages the damages dealt by a fall
+		/// </summary>
 		private void FallDamages()
 		{
 
@@ -167,35 +165,29 @@ namespace SCP
 			fallSpeed = base.Velocity.z;
 		}
 
-		private void RegenStamina()
+		/// <summary>
+		/// Restore the player's stamina when called
+		/// </summary>
+		/// <param name="regenRate">Stamina regeneration rate applied, multiplied by 1.5 if the player does not move</param>
+		private void RegenStamina( float regenRate )
 		{
 			if ( Stamina < 100f )
 			{
 				if ( Math.Abs( base.Velocity.y ) < 50 && Math.Abs( base.Velocity.x ) < 50 )
 				{
-					Stamina += 0.3f;
+					Stamina += (regenRate * 1.5f);
 				}
 				else
 				{
-					Stamina += 0.2f;
+					Stamina += regenRate;
 				}
-					
-			}else if (Stamina > 100f )
+
+			}
+			else if ( Stamina > 100f )
 			{
 				Stamina = 100f;
 			}
 		}
-
-		
-
-		public override void TakeDamage(DamageInfo damages)
-		{
-			damages.Damage -= this.Armor;
-			base.TakeDamage( damages );
-		}
-
-
-
 	}
 
 }

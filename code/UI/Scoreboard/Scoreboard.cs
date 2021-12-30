@@ -1,9 +1,6 @@
-﻿
-using Sandbox;
-using Sandbox.Hooks;
+﻿using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,59 +18,51 @@ namespace SCP.UI
 
 		public Scoreboard()
 		{
-			StyleSheet.Load( "/UI/Scoreboard/Oui/Scoreboard.scss" );
-			AddClass( "scoreboard" );
-
-
+			StyleSheet.Load("/UI/Scoreboard/Style/Scoreboard.scss");
+			AddClass("scoreboard");
 			AddHeader();
-
-			Canvas = Add.Panel( "canvas" );
-
+			Canvas = Add.Panel("canvas");
 		}
-
 		public override void Tick()
 		{
 			base.Tick();
-			if ( Input.Pressed( InputButton.Score ) )
+			if (Input.Pressed(InputButton.Score))
 			{
 				IsOpen = !IsOpen;
-				SetClass( "open", IsOpen );
+				SetClass("open", IsOpen);
 
 			}
-			if ( !IsVisible )
+			if (!IsVisible)
 			{
 				return;
 			}
 
-			foreach ( var client in Client.All.Except( Rows.Keys ) )
+			foreach (var client in Client.All.Except(Rows.Keys))
 			{
-				var entry = AddClient( client );
+				var entry = AddClient(client);
 				Rows[client] = entry;
 			}
 
-			foreach ( var client in Rows.Keys.Except( Client.All ) )
+			foreach (var client in Rows.Keys.Except(Client.All))
 			{
-				if ( Rows.TryGetValue( client, out var row ) )
+				if (Rows.TryGetValue(client, out var row))
 				{
 					row?.Delete();
-					Rows.Remove( client );
+					Rows.Remove(client);
 				}
 			}
 
 		}
-
-
 		protected virtual void AddHeader()
 		{
-			Header = Add.Panel( "header" );
-			Header.Add.Label( "Name", "name" );
-			Header.Add.Label( "Role", "role" );
-			Header.Add.Label( "Rank", "rank" );
-			Header.Add.Label( "Ping", "ping" );
-
+			Header = Add.Panel("header");
+			Header.Add.Label("Name", "name");
+			Header.Add.Label("Role", "role");
+			Header.Add.Label("Rank", "rank");
+			Header.Add.Label("Ping", "ping");
 		}
 
-		protected virtual T AddClient( Client entry )
+		protected virtual T AddClient(Client entry)
 		{
 			var p = Canvas.AddChild<T>();
 			p.Client = entry;

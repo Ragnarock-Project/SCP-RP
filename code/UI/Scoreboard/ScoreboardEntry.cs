@@ -1,9 +1,6 @@
 ﻿using Sandbox;
-using Sandbox.Hooks;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
-using System;
-using System.Collections.Generic;
 
 namespace SCP.UI
 {
@@ -17,7 +14,6 @@ namespace SCP.UI
 		public Label Rank;
 		public Label Ping;
 		public Label CategoryBorder;
-
 
 		public ScoreboardEntry()
 		{
@@ -59,9 +55,6 @@ namespace SCP.UI
 			Icon.SetTexture( $"avatar:{SteamId}" );
 			Ping.Text = Client.Ping.ToString();
 			SetClass( "me", Client == Local.Client );
-			
-			
-
 		}
 
 		public virtual void UpdateFrom( Client client )

@@ -4,10 +4,8 @@ namespace SCP.Departments
 {
 	class Scientist : MainPlayer
 	{
-
-
+		public static Color RoleColor { get; } = new Color( 0f, 255f, 255f );
 		public Scientist() { }
-
 
 		public Scientist( Client cl, string firstname, string lastname, int regnumber ) : base( cl )
 		{
@@ -27,7 +25,6 @@ namespace SCP.Departments
 			cl.SetValue( "rpname", RoleplayName );
 
 			cl.SetValue( "role", RoleName );
-
 		}
 	}
 }
