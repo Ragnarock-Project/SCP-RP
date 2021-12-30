@@ -51,7 +51,7 @@ namespace SCP
 					client.Pawn = scientist;
 					scientist.Respawn();
 					break;
-				case "ait":
+				case "soldier":
 					AIT ait = new( client, FirstName, LastName, Number );
 					client.Pawn = ait;
 					ait.Respawn();

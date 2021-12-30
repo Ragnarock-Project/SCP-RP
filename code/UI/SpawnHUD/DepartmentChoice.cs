@@ -39,7 +39,7 @@ namespace SCP.UI
 			bool ScientistEnabled = clientProgress.ScientistUnlocked;
 			AddEntry( ScientistPage, ScientistDesc, "/UI/Images/scientist.jpg", "Scientist",  ScientistEnabled );
 
-			Panel AITPage = MainPanel.Add.Panel( "ait" );
+			Panel AITPage = MainPanel.Add.Panel( "soldier" );
 			string AITDesc = "Response teams - or tactical teams - are highly trained and heavily armed combat teams whose purpose is to escort containment teams when dangerous abnormal entities or hostile Interest Groups are involved and to defend Foundation facilities against hostile actions. The response teams are mostly military units stationed at the Foundation's most important facilities, ready to deploy at any time.";
 			bool AITEnabled = clientProgress.SoldierUnlocked;
 			AddEntry( AITPage, AITDesc, "/UI/Images/soldier.jpg", "Soldier",  AITEnabled );

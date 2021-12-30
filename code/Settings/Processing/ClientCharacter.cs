@@ -17,6 +17,7 @@ namespace SCP.Settings
 			Number = number;
 		}
 
+		
 		public static ClientCharacter Load( long steamId, string department )
 		{
 			string characterPathFile = "/clientdata/" + steamId + "/characters/" + department + ".json";
