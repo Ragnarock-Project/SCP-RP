@@ -124,6 +124,18 @@ namespace SCP
 				}
 			}
 
+			if (Input.Pressed( InputButton.Voice ) )
+			{
+				if (Controller is MainWalkController)
+				{
+					Controller = new NoclipController();
+				}
+				else
+				{
+					Controller = new MainWalkController();
+				}
+
+			}
 
 			if ( Input.Released( InputButton.Jump ) )
 			{
